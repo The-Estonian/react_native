@@ -51,7 +51,7 @@ You need to be in the same local network as developemnt PC (wifi) and install Ex
 
 Here's screenshots of the project:
 
-<img src="screenshots/todo.jpg" alt="Project Screenshot" width="1000">
+<img src="screenshots/todo.jpg" alt="Project Screenshot" width="500">
 
 ## Contributing
 
