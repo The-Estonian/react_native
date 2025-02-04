@@ -4,7 +4,7 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-const TodoInput = ({ setTodos }) => {
+const TodoInput = ({ setNotDoneTodos }) => {
   const [userInput, setUserInput] = useState('');
 
   const inputHandler = (e) => {
@@ -14,7 +14,7 @@ const TodoInput = ({ setTodos }) => {
   const addTodo = () => {
     if (userInput.length > 0) {
       let newTodo = { id: uuidv4(), data: userInput };
-      setTodos((prev) => [...prev, newTodo]);
+      setNotDoneTodos((prev) => [...prev, newTodo]);
       setUserInput('');
     }
   };
