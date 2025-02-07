@@ -51,8 +51,11 @@ You need to be in the same local network as developemnt PC (wifi) and install Ex
 
 Here's screenshots of the project:
 
-<img src="screenshots/todo.jpg" alt="Project Screenshot 1" width="300">
-<img src="screenshots/todoapp.jpg" alt="Project Screenshot 2" width="300">
+<div style="display: flex; gap: 10px;">
+  <img src="screenshots/todo.jpg" alt="Project Screenshot 1" width="300">
+  <img src="screenshots/todoapp.jpg" alt="Project Screenshot 2" width="300">
+</div>
+
 
 ## Contributing
 
