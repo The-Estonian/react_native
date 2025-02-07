@@ -1,15 +1,20 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const Todo = ({ todo, removeTodo, switchTodo }) => {
+  const deleteHandler = (id) => (e) => {
+    e.stopPropagation();
+    removeTodo(id);
+  };
+
+  // const switchHandler = (id) => () => {
+  //   switchTodo(id);
+  // };
   return (
-    <TouchableOpacity onPress={() => switchTodo(todo.item.id)}>
+    <TouchableOpacity onPress={switchTodo.bind(this, todo.item.id)}>
       <View style={styles.eachTodo}>
         <Text style={styles.todoContent}>{todo.item.data}</Text>
         <TouchableOpacity
-          onLongPress={(e) => {
-            e.stopPropagation();
-            removeTodo(todo.item.id);
-          }}
+          onLongPress={deleteHandler(todo.item.id)}
           style={styles.removeTodo}
         >
           <Text style={styles.removeTodoText}>delete</Text>

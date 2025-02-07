@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import { useState } from 'react';
 
@@ -43,33 +44,35 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      {showInput && (
+    <>
+      <StatusBar style='light' />
+      <View style={styles.appContainer}>
         <TodoInput
+          showInput={showInput}
           setNotDoneTodos={setNotDoneTodos}
           switchInput={switchInput}
         />
-      )}
-      {!showInput && (
-        <TodoNotDoneList
-          switchTodo={switchTodo}
-          notDoneTodos={notDoneTodos}
-          removeTodo={removeTodo}
-        />
-      )}
-      {!showInput && (
-        <TodoDoneList
-          switchTodo={switchTodo}
-          doneTodos={doneTodos}
-          removeTodo={removeTodo}
-        />
-      )}
-      {!showInput && (
-        <TouchableOpacity style={styles.inputTrigger} onPress={switchInput}>
-          <Text style={styles.inputTriggerText}>+</Text>
-        </TouchableOpacity>
-      )}
-    </View>
+        {!showInput && (
+          <TodoNotDoneList
+            switchTodo={switchTodo}
+            notDoneTodos={notDoneTodos}
+            removeTodo={removeTodo}
+          />
+        )}
+        {!showInput && (
+          <TodoDoneList
+            switchTodo={switchTodo}
+            doneTodos={doneTodos}
+            removeTodo={removeTodo}
+          />
+        )}
+        {!showInput && (
+          <TouchableOpacity style={styles.inputTrigger} onPress={switchInput}>
+            <Text style={styles.inputTriggerText}>+</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </>
   );
 }
 
