@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useState, useEffect } from 'react';
 
-import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import TodoInput from './components/TodoInput';
 import TodoNotDoneList from './components/TodoNotDoneList';
@@ -11,6 +12,27 @@ export default function App() {
   const [showInput, setShowInput] = useState(false);
   const [notDoneTodos, setNotDoneTodos] = useState([]);
   const [doneTodos, setDoneTodos] = useState([]);
+
+  useEffect(() => {
+    const loadDoneTodos = async () => {
+      const storedNotDone = await AsyncStorage.getItem('notDoneTodos');
+      if (storedNotDone) setNotDoneTodos(JSON.parse(storedNotDone));
+    };
+    const loadNotDoneTodos = async () => {
+      const storedDone = await AsyncStorage.getItem('doneTodos');
+      if (storedDone) setDoneTodos(JSON.parse(storedDone));
+    };
+    loadDoneTodos();
+    loadNotDoneTodos();
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem('notDoneTodos', JSON.stringify(notDoneTodos));
+  }, [notDoneTodos]);
+
+  useEffect(() => {
+    AsyncStorage.setItem('doneTodos', JSON.stringify(doneTodos));
+  }, [doneTodos]);
 
   const removeTodo = (key) => {
     let newTodoList;
